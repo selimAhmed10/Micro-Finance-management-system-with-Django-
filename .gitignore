@@ -1,0 +1,26 @@
+# Virtual Environment (Don't upload this to GitHub)
+Microfi/
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+*.sqlite3
+
+# Django
+*.log
+db.sqlite3
+*.pot
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# System files
+Thumbs.db
