@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'groups',
     'loans',
     'officer',
-    'borrower'
+    'borrower',
     'my_admin',
     'login',
 ]
