@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% if group %}Edit Group{% else %}Add Group{% endif %}</title>
 </head>
 <body>
-    <h1>{%if groups %}Edit it {%else%}Add group{%endif%}</h1>
+    <h1>{% if group %}Edit Group{% else %}Add New Group{% endif %}</h1>
     
     <form method="post">
-        <% {% csrf_token %}
+        {% csrf_token %}
+        
         <p>
-            <label>Group name:</label>
-            <input type="text" name="name" value="{{groups.name}}" required>
+            <label>Group name:</label><br>
+            <input type="text" name="name" value="{{ group.name }}" required>
         </p>
 
-          <p>
-            <label>Location:</label>
-            <input type="text" name="location" value="{{groups.locaton}}" required>
+        <p>
+            <label>Location:</label><br>
+            <input type="text" name="location" value="{{ group.location }}">
         </p>
 
-   <p>
+        <p>
             <label>Assign Officer:</label><br>
             <select name="officer">
                 <option value="">-- None --</option>
@@ -32,10 +33,8 @@
             </select>
         </p>
 
-          <button type="submit">Save</button>
+        <button type="submit">Save</button>
         <a href="/groups/">Cancel</a>
-
-
     </form>
 </body>
 </html>
