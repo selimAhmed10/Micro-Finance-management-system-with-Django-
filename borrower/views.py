@@ -10,12 +10,14 @@ def dashboard(request):
     if not hasattr(request.user,'borrower'):
         return redirect('/')
     total_product=Product.objects.count()
+    products=Product.objects.all()
     
     pas = {
         'total_product':total_product,
         'username':request.user.username,
         'password':request.user.password,
         'name':request.user.borrower.name,
+        'products':products,
         
     }
     

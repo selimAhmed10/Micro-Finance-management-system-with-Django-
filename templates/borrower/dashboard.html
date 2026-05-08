@@ -8,15 +8,38 @@
 <body>
     <h1>welcom in your dashboard</h1>
     <p>Username: {{username}}</p>
-     <p>Password: {{password}}</p>
-      <p>Name: {{name}}</p><br>
-
+      <p>Name: {{name}}</p>
 
     <p>-------------------------------------------------------------</p>
     <p>Total Product: {{total_product}}</p><br>
-   
-<p>-------------------------------------------------------------</p>
-  
+   <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Interest Rate (%)</th>
+                <th>Total Installments</th>
+                <th>Per Install Amount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in products %}
+            <tr>
+                <td>{{ p.id }}</td>
+                <td>{{ p.name }}</td>
+                <td>{{ p.amount }}</td>
+                <td>{{ p.interest_rate }}%</td>
+                <td>{{ p.total_installment }}</td>
+                <td>{{ p.per_install_amount }}</td>
+                <td><a href=" ">Apply</a></td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 
 
 </body>
