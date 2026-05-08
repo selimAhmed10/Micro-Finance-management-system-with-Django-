@@ -27,7 +27,7 @@ def log_in(request):
             return redirect('/my_admin/dashboard/')
         elif hasattr(user, 'officer'):
             return redirect('/officer/dashboard/')
-        elif hasattr(user, 'member'):
+        elif hasattr(user, 'borrower'):
             return redirect('/borrower/dashboard/')
         else:
             messages.error(request, "No role assigned")
