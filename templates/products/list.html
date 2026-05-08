@@ -5,7 +5,9 @@
 </head>
 <body>
     <h1>Product List</h1>
-    <a href="{% url 'create_product' %}">Add New Product</a>
+    
+    <!-- Change this line -->
+    <a href="/products/create/">Add New Product</a>
 
     <table border="1">
         <thead>
@@ -29,11 +31,10 @@
                 <td>{{ p.total_installment }}</td>
                 <td>{{ p.per_install_amount }}</td>
                 <td>
-                    <a href="{% url 'update_product' p.id %}">Edit</a>
-                    <a href="{% url 'delete_product' p.id %}" onclick="return confirm('Are you sure?')">Delete</a>
+                    <a href="/products/update/{{ p.id }}/">Edit</a>
+                    <a href="/products/delete/{{ p.id }}/" onclick="return confirm('Are you sure?')">Delete</a>
                 </td>
             </tr>
-         
             {% endfor %}
         </tbody>
     </table>
