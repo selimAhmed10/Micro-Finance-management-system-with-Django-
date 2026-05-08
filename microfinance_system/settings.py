@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'products',
     'groups',
     'loans',
+    'officer',
+    'borrower'
+    'my_admin',
+    'login',
 ]
 
 MIDDLEWARE = [
