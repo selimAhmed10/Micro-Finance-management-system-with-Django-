@@ -5,11 +5,10 @@ from django.contrib.auth.models import User
 from .models import Borrower
 from groups.models import Group
 from products.models import Product
-from borrower.models import Borrower
 
 @login_required
 def dashboard(request):
-    if not hasattr(request.user,'borrower'):
+    if not hasattr(request.user, 'borrower'):
         return redirect('/')
     
     borrower = request.user.borrower
@@ -22,30 +21,9 @@ def dashboard(request):
     }
     return render(request, 'borrower/dashboard.html', context)
 
-
-
-
-
-
-
-
-@login_required
-def group_members(request, group_id):
-    if not hasattr(request.user, 'officer'):
-        return redirect('/')
-    
-    group = get_object_or_404(Group, id=group_id, officer=request.user.officer)
-    borrowers = Borrower.objects.filter(group=group)
-    
-    return render(request, 'borrower/list.html', {
-        'group': group,
-        'borrowers': borrowers,
-    })
-
-
 @login_required
 def borrower_list(request):
-    if not hasattr(request.user, 'officer'):
+    if not hasattr(request.user, 'admin'):
         return redirect('/')
     borrowers = Borrower.objects.all()
     return render(request, 'borrower/all_list.html', {'borrowers': borrowers})
@@ -80,7 +58,7 @@ def add_member(request, group_id):
         )
         
         messages.success(request, f"Member '{username}' added!")
-        return redirect(f'/borrower/members/{group_id}/')
+        return redirect(f'/officer/group/{group_id}/borrowers/')
     
     return render(request, 'borrower/form.html', {
         'borrower': None,
@@ -106,7 +84,7 @@ def edit_member(request, id):
         borrower.save()
         
         messages.success(request, "Member updated!")
-        return redirect(f'/borrower/members/{group_id}/')
+        return redirect(f'/officer/group/{group_id}/borrowers/')
     
     return render(request, 'borrower/form.html', {
         'borrower': borrower,
@@ -121,4 +99,4 @@ def delete_member(request, id):
     member.user.delete()
     
     messages.success(request, f"Member '{username}' deleted!")
-    return redirect(f'/borrower/members/{group_id}/')
+    return redirect(f'/officer/group/{group_id}/borrowers/')

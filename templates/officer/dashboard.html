@@ -5,6 +5,7 @@
 </head>
 <body>
     <h1>Welcome in your dashboard</h1>
+    <a href="/logout/">Logout</a>
     <p>Username: {{ username }}</p>
     <h2>My Assigned Groups</h2>
     
@@ -55,7 +56,7 @@
                 <td>{{ product.interest_rate }}%</td>
                 <td>{{ product.total_installment }}</td>
                 <td>{{ product.per_install_amount }}</td>
-                <td><a href="#">Make Loan</a></td>
+                <td><a href="">Make Loan</a></td>
             </tr>
     
             {% endfor %}

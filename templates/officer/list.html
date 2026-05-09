@@ -5,8 +5,8 @@
 </head>
 <body>
     <h1>Officer List</h1>
-    
-    <a href="/officer/create/">Add Officer</a>
+    <a href="/my_admin/dashboard/">Dashboard</a><br>
+    <a href="/officer/create/">Add Officer</a><br>
 
     <table border="1">
         <thead>
@@ -31,7 +31,7 @@
                 <td>{{ officer.address }}</td>
                 <td>
                     <a href="/officer/edit/{{ officer.id }}/">Edit</a>
-                    <a href="/officer/delete/{{ officer.id }}/" onclick="return confirm('Are you sure?')">Delete</a>
+                    <a href="/officer/delete/{{ officer.id }}/">Delete</a>
                 </td>
             </tr>
             {% endfor %}

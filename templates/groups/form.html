@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if group %}Edit Group{% else %}Add Group{% endif %}</title>
+    <title>group form</title>
 </head>
 <body>
-    <h1>{% if group %}Edit Group{% else %}Add New Group{% endif %}</h1>
+    <h1>Group form</h1>
     
     <form method="post">
         {% csrf_token %}
@@ -24,10 +24,10 @@
         <p>
             <label>Assign Officer:</label><br>
             <select name="officer">
-                <option value="">-- None --</option>
+                <option value="">None</option>
                 {% for officer in officers %}
                     <option value="{{ officer.id }}" {% if group.officer and group.officer.id == officer.id %}selected{% endif %}>
-                        {{ officer.name }} (ID: {{ officer.officer_id }})
+                        {{ officer.name }} 
                     </option>
                 {% endfor %}
             </select>

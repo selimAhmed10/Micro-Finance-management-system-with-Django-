@@ -5,7 +5,7 @@
     <title>Login - Microfinance System</title>
 </head>
 <body>
-    <h1>Microfinance System Login</h1>
+    <h1>Microfinance Management System Using Django</h1>
     
     {% if messages %}
         {% for message in messages %}
@@ -16,12 +16,12 @@
     <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
         
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+        <label>Username:</label>
+        <input type="text"  name="username" required>
         <br><br>
         
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <label>Password:</label>
+        <input type="password" name="password" required>
         <br><br>
         
         <button type="submit">Login</button>

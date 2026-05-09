@@ -4,7 +4,7 @@
     <title>Officer add form --</title>
 </head>
 <body>
-    <h1>{% if officer %}Edit Officer{% else %}Add  officer{% endif %}</h1>
+    <h1>Oficer Form</h1>
 
     <form method="post">
         {% csrf_token %}
@@ -47,7 +47,7 @@
         </p>
 
         <button type="submit">Save</button>
-        <a href="/officer/">Cancel</a>
+        <a href="/officer/view/">Cancel</a>
     </form>
 </body>
 </html>

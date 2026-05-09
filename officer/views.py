@@ -26,23 +26,19 @@ def dashboard(request):
     }
     return render(request, 'officer/dashboard.html', context)
 
-
-
 @login_required
 def group_borrowers(request, group_id):
     if not hasattr(request.user, 'officer'):
         return redirect('/')
     
-
-    
     group = get_object_or_404(Group, id=group_id, officer=request.user.officer)
     borrowers = Borrower.objects.filter(group=group)
     
-
     return render(request, 'borrower/list.html', {
-        'borrowers': borrowers,
         'group': group,
+        'borrowers': borrowers,
     })
+
 
 @login_required
 def view_officer(request):
@@ -73,7 +69,7 @@ def create_officer(request):
             address=request.POST['address'],
         )
         messages.success(request, "Officer created successfully")
-        return redirect('/officer/view')
+        return redirect('/officer/view/')
     
     return render(request, 'officer/form.html')
 
@@ -87,7 +83,7 @@ def modify_officer(request, id):
         officer.address = request.POST['address']
         officer.save()
         messages.success(request, "Officer updated successfully")
-        return redirect('/officer/view')
+        return redirect('/officer/view/')
     
     return render(request, 'officer/form.html', {'officer': officer})
 
@@ -96,4 +92,4 @@ def delete_officer(request, id):
     username = officer.user.username
     officer.user.delete()
     messages.success(request, "Officer deleted successfully")
-    return redirect('/officer/view')
+    return redirect('/officer/view/')

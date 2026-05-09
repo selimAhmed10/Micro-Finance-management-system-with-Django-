@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Members of {{ group.name }}</title>
+    <title>borrower</title>
 </head>
 <body>
     <h1>Group: {{ group.name }}</h1>
-    <p>Location: {{ group.location }}</p>
+    <h1>Location: {{ group.location }}</h1>
 
 
     <a href="/borrower/add/{{ group.id }}/">Add member</a>
@@ -37,7 +37,7 @@
                 <td>{{ borrower.phone }}</td>
                 <td>
                     <a href="/borrower/edit/{{ borrower.id }}/">Edit</a>
-                    <a href="/borrower/delete/{{ borrower.id }}/" onclick="return confirm('Delete?')">Delete</a>
+                    <a href="/borrower/delete/{{ borrower.id }}/">Delete</a>
                 </td>
            
             {% endfor %}
