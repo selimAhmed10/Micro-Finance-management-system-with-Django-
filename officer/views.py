@@ -4,6 +4,7 @@ from products.models import Product
 from django.shortcuts import render,redirect
 from officer.models import Officer
 from borrower.models import Borrower
+from django.contrib.auth.models import User
 
 @login_required
 def dashboard(request):
@@ -20,3 +21,39 @@ def dashboard(request):
     }
     
     return render(request,'officer/dashboard.html',pas)
+
+
+@login_required
+def view_officer(request):
+    if not hasattr(request.user,'admin'):
+        return redirect('/')
+    officer=Officer.objects.all()
+    return render(request,'officer/list.html',{'officer':officer})
+
+
+def create_officer(request):
+    if request.method=='POST':
+        username=request.POST['username']
+        password=request.POSt['password']
+        
+        if Officer.objects.filter(username=username).exists():
+            messages.error(request,"Username already have in officer")
+            return redirect('create_officer')
+        
+        user=User.objects.create(
+            username=username,
+            password=password
+        )
+        
+        officer=Officer.objects.create(
+            user=user,
+            officer_id=request.POST['officer_id']
+            name=request.POST['name']
+            nid=request.POST['nid']
+            phone=request.POST['phone'] 
+            address=request.POST['address']           
+            
+        )
+        messages.success(request,"Officer created")
+        return redirect('view_oficcer')
+    return render(request,'officer/list.html')
