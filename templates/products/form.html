@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% if product %}Edit{% else %}Add{% endif %} Product</title>
+    <title>product form</title>
 </head>
 <body>
-    <h1>{% if product %}Edit Product{% else %}Add New Product{% endif %}</h1>
+    <h1>{% if product %}Edit Product{% else %}Add  Product{% endif %}</h1>
 
     <form method="post">
         {% csrf_token %}
