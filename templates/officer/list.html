@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Officer List</title>
+</head>
+<body>
+    <h1>Officer List</h1>
+    
+    <a href="/officer/create/">Add Officer</a>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Officer ID</th>
+                <th>Name</th>
+                <th>NID</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for officer in officers %}
+            <tr>
+                <td>{{ officer.id }}</td>
+                <td>{{ officer.officer_id }}</td>
+                <td>{{ officer.name }}</td>
+                <td>{{ officer.nid }}</td>
+                <td>{{ officer.phone }}</td>
+                <td>{{ officer.address }}</td>
+                <td>
+                    <a href="/officer/edit/{{ officer.id }}/">Edit</a>
+                    <a href="/officer/delete/{{ officer.id }}/" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
