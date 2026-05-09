@@ -1,18 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Officer Dashboard</title>
 </head>
 <body>
-    <h1>Welcome to your Dashboard</h1>
+    <h1>Welcome in your dashboard</h1>
     <p>Username: {{ username }}</p>
-    <p>Name: {{ name }}</p>
-
-    <hr>
-
-    <h2>Assigned groups</h2>
+    <h2>My Assigned Groups</h2>
+    
     <table border="1">
         <thead>
             <tr>
@@ -25,22 +20,17 @@
         <tbody>
             {% for group in assign_group %}
             <tr>
-                <td>{{ group.id }}</td
-                <td>{{ group.name }}</td
-                <td>{{ group.location }}</td
-                <td>
-                    <a href="/officer/group/{{ group.id }}/borrowers/">Manage Members</a>
-                </td
+                <td>{{ group.id }}</td>
+                <td>{{ group.name }}</td>
+                <td>{{ group.location }}</td>
+                <td><a href="/officer/group/{{ group.id }}/borrowers/">Manage Members</a></td>
             </tr>
-            {% empty %}
-            <tr>
-                <td colspan="4">No groups assigned yet.</td
-            </tr>
+
             {% endfor %}
         </tbody>
     </table>
 
-    <hr>
+
 
     <h2>Available Products</h2>
     
@@ -57,25 +47,20 @@
             </tr>
         </thead>
         <tbody>
-            {% for p in products %}
+            {% for product in products %}
             <tr>
-                <td>{{ p.id }}</td
-                <td>{{ p.name }}</td
-                <td>{{ p.amount }}</td
-                <td>{{ p.interest_rate }}%</td
-                <td>{{ p.total_installment }}</td
-                <td>{{ p.per_install_amount }}</td
-                <td><a href="#">Make Loan</a></td
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.amount }}</td>
+                <td>{{ product.interest_rate }}%</td>
+                <td>{{ product.total_installment }}</td>
+                <td>{{ product.per_install_amount }}</td>
+                <td><a href="#">Make Loan</a></td>
             </tr>
-            {% empty %}
-            <tr>
-                <td colspan="7">No products available.</td
-            </tr>
+    
             {% endfor %}
         </tbody>
     </table>
 
-    <hr>
-    <a href="/logout/">Logout</a>
 </body>
 </html>

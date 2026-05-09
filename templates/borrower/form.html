@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>borrowee </title>
+    <title>{% if borrower %}Edit{% else %}Add{% endif %} Member</title>
 </head>
 <body>
-    <h1>{% if borrower %}Edit Borrower{% else %}Add New Borrower{% endif %}</h1>
+    <h1>{% if borrower %}Edit Member{% else %}Add New Member{% endif %}</h1>
     
     <form method="post">
         {% csrf_token %}
@@ -65,23 +65,16 @@
         </p>
         <p>
             <label>Address:</label><br>
-            <textarea name="address" rows="3" cols="30" required>{{ borrower.address }}</textarea>
-        </p>
-        
-        <p>
-            <label>Select Group (Optional):</label><br>
-            <select name="group">
-                <option value=""> None </option>
-                {% for group in groups %}
-                    <option value="{{ group.id }}" {% if borrower.group and borrower.group.id == group.id %}selected{% endif %}>
-                        {{ group.name }}
-                    </option>
-                {% endfor %}
-            </select>
+            <textarea name="address" rows="4" cols="40" required>{{ borrower.address }}</textarea>
         </p>
         
         <button type="submit">Save</button>
-        <a href="/borrower/">Cancel</a>
+        
+        {% if borrower %}
+            <a href="/borrower/members/{{ borrower.group.id }}/">Cancel</a>
+        {% else %}
+            <a href="/borrower/members/{{ group.id }}/">Cancel</a>
+        {% endif %}
     </form>
 </body>
 </html>

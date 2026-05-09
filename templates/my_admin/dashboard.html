@@ -12,13 +12,44 @@
     <p>-------------------------------------------------------------</p>
     <p>Total Product: {{total_product}}</p>
     <p>Total Product: {{total_borrower}}</p>
+    <p>Total Group: {{total_group}}</p>
+
 
     <p>-------------------------------------------------------------</p>
      
-     <a href="/products/view" class="button">Manage Product</a>
+     <a href="/products/view" type="button">Manage Product</a>
      <a href="/groups/">Manage Groups</a>
      <a href="/officer/view/">Manage Officer</a>
     <br>
+
+    <p>...............................................................</p>
+    <table border="1">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Nid</th>
+                <th>Phone no</th>
+            </tr>
+        </thead>
+        <tbody>
+             {%for borrower in borrowers%}
+             <tr>
+                <td>{{borrower.id}}</td>
+                 <td>{{borrower.name}}</td>
+                  <td>{{borrower.nid}}</td>
+                   <td>{{borrower.phone}}</td>
+             </tr>
+             {%endfor%}
+
+        </tbody>
+           
+
+    </table>
+
+   
+
 
 
 

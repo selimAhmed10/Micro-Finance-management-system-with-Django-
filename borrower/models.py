@@ -1,25 +1,20 @@
 from django.db import models
-
-from django.db import models
 from django.contrib.auth.models import User
+from groups.models import Group  
 
 class Borrower(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    
     name = models.CharField(max_length=100)
     fathers_name = models.CharField(max_length=100)
     mothers_name = models.CharField(max_length=100)
     age = models.IntegerField()
     nid = models.CharField(max_length=20, unique=True)
-
     grantor_name = models.CharField(max_length=100)
-    grantor_nid = models.CharField(max_length=20)
-  
+    grantor_nid = models.CharField(max_length=20)  
     occupation = models.CharField(max_length=100)
     phone = models.CharField(max_length=15)
     address = models.TextField()
-
-    
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, blank=True) 
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
