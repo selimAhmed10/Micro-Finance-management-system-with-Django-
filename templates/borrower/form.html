@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>borrowee </title>
+</head>
+<body>
+    <h1>{% if borrower %}Edit Borrower{% else %}Add New Borrower{% endif %}</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        {% if not borrower %}
+        <h3>Login Information:</h3>
+        <p>
+            <label>Username:</label><br>
+            <input type="text" name="username" required>
+        </p>
+        <p>
+            <label>Password:</label><br>
+            <input type="password" name="password" required>
+        </p>
+        <hr>
+        {% endif %}
+        
+        <h3>Personal Information:</h3>
+        <p>
+            <label>Full Name:</label><br>
+            <input type="text" name="name" value="{{ borrower.name }}" required>
+        </p>
+        <p>
+            <label>Father's Name:</label><br>
+            <input type="text" name="fathers_name" value="{{ borrower.fathers_name }}" required>
+        </p>
+        <p>
+            <label>Mother's Name:</label><br>
+            <input type="text" name="mothers_name" value="{{ borrower.mothers_name }}" required>
+        </p>
+        <p>
+            <label>Age:</label><br>
+            <input type="number" name="age" value="{{ borrower.age }}" required>
+        </p>
+        <p>
+            <label>NID Number:</label><br>
+            <input type="text" name="nid" value="{{ borrower.nid }}" required>
+        </p>
+        
+        <h3>Grantor Information:</h3>
+        <p>
+            <label>Grantor Name:</label><br>
+            <input type="text" name="grantor_name" value="{{ borrower.grantor_name }}" required>
+        </p>
+        <p>
+            <label>Grantor NID:</label><br>
+            <input type="text" name="grantor_nid" value="{{ borrower.grantor_nid }}" required>
+        </p>
+        
+        <h3>Contact & Occupation:</h3>
+        <p>
+            <label>Occupation:</label><br>
+            <input type="text" name="occupation" value="{{ borrower.occupation }}" required>
+        </p>
+        <p>
+            <label>Phone Number:</label><br>
+            <input type="text" name="phone" value="{{ borrower.phone }}" required>
+        </p>
+        <p>
+            <label>Address:</label><br>
+            <textarea name="address" rows="3" cols="30" required>{{ borrower.address }}</textarea>
+        </p>
+        
+        <p>
+            <label>Select Group (Optional):</label><br>
+            <select name="group">
+                <option value=""> None </option>
+                {% for group in groups %}
+                    <option value="{{ group.id }}" {% if borrower.group and borrower.group.id == group.id %}selected{% endif %}>
+                        {{ group.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </p>
+        
+        <button type="submit">Save</button>
+        <a href="/borrower/">Cancel</a>
+    </form>
+</body>
+</html>
