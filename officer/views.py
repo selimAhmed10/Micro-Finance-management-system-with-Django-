@@ -4,12 +4,16 @@ from products.models import Product
 from django.shortcuts import render, redirect, get_object_or_404
 from officer.models import Officer
 from borrower.models import Borrower
+from groups.models import Group
+from borrower.models import Borrower
 from django.contrib.auth.models import User
 
 @login_required
 def dashboard(request):
     if not hasattr(request.user, 'officer'):
         return redirect('/')
+    officer=request.user.officer
+    assign_group=Group.objects.filter(officer=officer)
     total_product = Product.objects.count()
     products = Product.objects.all()
     pas = {
@@ -17,8 +21,23 @@ def dashboard(request):
         'username': request.user.username,
         'name': request.user.officer.name,
         'products': products,
+        'assign_group':assign_group,
     }
     return render(request, 'officer/dashboard.html', pas)
+
+
+@login_required
+def group_borrowers(request, group_id):
+    if not hasattr(request.user, 'officer'):
+        return redirect('/')
+    
+    group = get_object_or_404(Group, id=group_id, officer=request.user.officer)
+    borrowers = Borrower.objects.filter(group=group)
+    
+    return render(request, 'officer/group_borrowers.html', {
+        'group': group,
+        'borrowers': borrowers,
+    })
 
 
 @login_required
@@ -77,3 +96,5 @@ def delete_officer(request, id):
     officer.user.delete()
     messages.success(request,"Officer deleted successfully")
     return redirect('/officer/view/')
+
+
