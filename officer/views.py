@@ -71,3 +71,9 @@ def modify_officer(request,id):
         messages.success(request,"Modify successfull")
         return redirect('view_officer')
     return redirect(request,'officer/form.html',{'officer':officer})
+
+def delete_officer(request,id):
+    officer=get_object_or_404(Officer,id=id)
+    officer.delete()
+    messages("Successfully delete the officer ")
+    return redirect('view_officer')
